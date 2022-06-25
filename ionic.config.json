@@ -1,0 +1,7 @@
+{
+  "name": "LaGranja",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

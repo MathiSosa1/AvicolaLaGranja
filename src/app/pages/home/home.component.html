@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="subtitulo ion-text-wrap">
+        Avicola La Granja
+    </ion-title>
+    
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+         <ion-icon color="light" slot="icon-only"  name="menu-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/carrito']" >
+        <ion-icon color="light" slot="icon-only"  name="cart-sharp"></ion-icon>
+     </ion-button>
+      <ion-button [routerLink]="['/perfil']" >
+         <ion-icon color="light" slot="icon-only"  name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <div *ngFor="let producto of productos">
+  <app-producto color="medium" [producto]= producto></app-producto>
+  </div>
+
+</ion-content><br><br>
+<footer>
+  Muchas Gracias por visitar la App de Avicola La Granja<br>
+  Nuestro Teléfono de Contacto: 2644122198<br>
+  Dirección: Rodriguez 710 éste- Chimbas-San Juan
+</footer>
+
