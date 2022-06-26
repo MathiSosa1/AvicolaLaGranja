@@ -1,0 +1,6 @@
+{
+	"appId": "com.mscode.LaGranjaApp",
+	"appName": "LaGranjaApp",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

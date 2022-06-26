@@ -26,12 +26,12 @@
 <ion-content>
 
   <div class="m-3">
-    <ion-segment mode="ios" (ionChange)="cambiarestado($event)" value="nuevos">
+    <ion-segment mode="ios" (ionChange)="segmento($event)" value="nuevos">
       <ion-segment-button value="nuevos">
         <ion-label class="normal">Nuevos</ion-label>
       </ion-segment-button>
       <ion-segment-button value="culminados">
-        <ion-label class="normal">Entregados</ion-label>
+        <ion-label class="normal">Listo para retirar</ion-label>
       </ion-segment-button>
     </ion-segment>
 </div>
@@ -44,10 +44,14 @@
           <p>
             fecha: {{pedido.fecha.seconds*1000 | date:'medium' }}
           </p>
-
          </ion-label>
-     
-    </ion-item>
+     </ion-item>
+     <ion-item>
+      <ion-label class="normal">Estado:</ion-label>
+      <ion-select (ionChange)="actualizarestado(pedido, $event)" [value]="pedido.estado" okText="Ok" cancelText="cancelar" interface="popover" placeholder="Selecciona opción">
+        <ion-select-option class="normal" *ngFor="let estado of estados" [value]="estado">{{estado}}</ion-select-option>
+      </ion-select>
+     </ion-item>
     <app-itemcarrito *ngFor="let producto of pedido.productos"  
     [productoPedido]="producto" [botones]=false>
   </app-itemcarrito>

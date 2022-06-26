@@ -37,8 +37,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
     this.menucontroler.toggle('principal');
   }
 
-  changeSegment(ev: any) {
-    //  console.log('changeSegment()', ev.detail.value);
+  segmento(ev: any) {
      const opc = ev.detail.value;
      if (opc === 'culminados') {
        this.getPedidosCulminados();
@@ -51,7 +50,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
     console.log('getPedidosCulminados()');
     const uid = await this.firebaseauthService.getUid();
     const path = 'Clientes/' + uid + '/pedidos/';
-    this.culmidadosSuscriber = this.firestoreService.getCollectionQuery<Pedido>(path, 'estado', '==', 'entregado').subscribe( res => {
+    this.culmidadosSuscriber = this.firestoreService.getCollectionQuery<Pedido>(path, 'estado', '==', 'Pase a retirar').subscribe( res => {
           if (res.length) {
                 console.log('getPedidosCulminados() -> res ', res);
                 this.pedidos = res;

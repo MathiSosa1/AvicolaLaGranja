@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'LaGranja',
+  appId: 'com.mscode.LaGranjaApp',
+  appName: 'LaGranjaApp',
   webDir: 'www',
   bundledWebRuntime: false
 };

@@ -27,16 +27,15 @@
 <ion-content>
 
   <div class="m-3">
-    <ion-segment value="nuevos">
+    <ion-segment mode="ios" (ionChange)="segmento($event)" value="nuevos">
       <ion-segment-button value="nuevos">
-        <ion-label class="normal">nuevos</ion-label>
+        <ion-label class="normal">Mi último pedido</ion-label>
       </ion-segment-button>
       <ion-segment-button value="culminados">
-        <ion-label class="normal">culminados</ion-label>
+        <ion-label class="normal">Estado de mi pedido</ion-label>
       </ion-segment-button>
     </ion-segment>
 </div>
-
 
   <ion-card *ngFor="let pedido of pedidos" class="mt-5 mb-5">
     <ion-item>

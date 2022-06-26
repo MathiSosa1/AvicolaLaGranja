@@ -30,4 +30,4 @@ export interface ProductoPedido {
     cantidad: number;
 }
 
-export type  EstadoPedido = 'enviado' | 'entregado';
+export type  EstadoPedido = 'enviado' | 'Pase a retirar';

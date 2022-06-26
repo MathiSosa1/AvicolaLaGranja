@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseauthService } from '../../services/firebaseauth.service';
 import { Subscription } from 'rxjs';
-import { Pedido } from '../../models';
+import { EstadoPedido, Pedido } from '../../models';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { MenuController } from '@ionic/angular';
 
@@ -10,15 +10,19 @@ import { MenuController } from '@ionic/angular';
   templateUrl: './pedidos.component.html',
   styleUrls: ['./pedidos.component.scss'],
 })
+
 export class PedidosComponent implements OnInit {
 
+
+  
   nuevosSuscriber: Subscription;
   culmidadosSuscriber: Subscription;
-  suscriberUserInfo: Subscription;
   pedidos: Pedido[] = [];
   pedidosEntregados: Pedido[] = [];
 
   nuevos = true;
+
+  estados: EstadoPedido[] = ['enviado', 'Pase a retirar']
 
   constructor(public menucontroler: MenuController,
     public firestoreService: FirestoreService,
@@ -34,7 +38,7 @@ export class PedidosComponent implements OnInit {
     this.menucontroler.toggle('principal');
   }
 
-  cambiarestado(ev: any) {
+  segmento(ev: any) {
    
      const opc = ev.detail.value;
      if (opc === 'culminados') {
@@ -72,7 +76,7 @@ export class PedidosComponent implements OnInit {
     if (this.pedidosEntregados.length) {
         startAt = this.pedidosEntregados[this.pedidosEntregados.length - 1].fecha
     }
-    this.nuevosSuscriber = this.firestoreService.getCollectionAll<Pedido>(path, 'estado', '==', 'entregado', startAt).subscribe( res => {
+    this.nuevosSuscriber = this.firestoreService.getCollectionAll<Pedido>(path, 'estado', '==', 'Pase a retirar', startAt).subscribe( res => {
           if (res.length) {
                 console.log('getPedidosTerminados() -> res ', res);
                 res.forEach( pedido => {
@@ -83,8 +87,20 @@ export class PedidosComponent implements OnInit {
     
   }
   
-}
+  actualizarestado(pedido:Pedido, event:any){
+    const estado='enviado';
+    console.log('actualizarestado()=>', event.detail.value);
+    const path ='Clientes/' + pedido.cliente.uid + '/pedidos/';
+  const updateDoc = {
+    estado:'Pase a retirar',
+  };
+  const id =pedido.id;
+  this.firestoreService.updateDoc(updateDoc, path, id).then( () => {
 
+  console.log('actualizado exitosamente');
+  });
+}
+}
 
 
 
